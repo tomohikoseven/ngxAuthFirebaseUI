@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngxAuthFirebaseUI';
+  user: Observable<firebase.User>;
+
+  constructor( private angularFireAuth: AngularFireAuth ) {}
+
+  ngOnInit() {
+    this.user = this.angularFireAuth.authState;
+  }
 }
